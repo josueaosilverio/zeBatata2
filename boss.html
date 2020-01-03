@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Boss</title>
+    <link rel="stylesheet" href="game.css" type="text/css">
+    <script src="boss.js" type="text/javascript"></script>
+    <style>
+        #main_boss, #boss_background {
+            width: 1100px;
+            height: 600px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        #boss_background {
+            background: url('images/boss_level/espaco.png');
+            z-index: -1;
+        }
+        #main_boss img {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #end {
+            top: 120px;
+            left: -370px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main_boss">
+        <div id="boss_background"></div>
+        <img src="images/boss_level/lifes_adolfo/10.png" id="lifes_adolfo">
+        <img src="images/lifes/5.png" id="lifes_ze">
+        <img src="images/boss_level/laser_ze.png" id="laser_ze">
+        <img src="images/boss_level/nave_ze.png" id="nave_ze">
+        <img src="images/boss_level/nave_inimigo.png" id="nave_inimigo1">
+        <img src="images/boss_level/nave_inimigo.png" id="nave_inimigo2">
+        <img src="images/boss_level/nave_inimigo.png" id="nave_inimigo3">
+        <img src="images/boss_level/nave_inimigo.png" id="nave_inimigo4">
+        <img src="images/boss_level/laser_adolfo.png" id="laser_adolfo">
+        <img src="images/boss_level/nave_adolfo.png" id="nave_adolfo">
+    </div>
+    <div id="blur"></div>
+    <div id="end">
+        <span id="mensagem"></span><br><span id="mensagem2"></span><br><span id="resultado"></span>
+    </div>
+    <div id="div_nome">
+        <input type="text" id="nome" maxlength="10" autocomplete="off" autofocus><button id="btn">OK</button>
+    </div>
+    <div id="tableTOP">
+        <div id="title">TOP 10</div>
+        <div id="headers">
+            <span id="txt_rank">Rank</span><span id="txt_score">Score</span><span id="txt_name">Name</span>
+        </div>
+        <div id="rank"></div>
+        <div id="score"></div>
+        <div id="name"></div>
+    </div>
+    <button type="button" id="repetir">Repetir</button>
+    <button type="button" id="voltar">Voltar</button>
+</body>
+</html>

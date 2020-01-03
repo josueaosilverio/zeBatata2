@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="game.css" type="text/css">
+    <style>
+        * {
+            overflow: hidden;
+        }
+        #menu {
+            width: 1100px;
+            height: 600px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-image: url('images/menu_principal.png');
+        }
+        #img_hover, #img_hover_def {
+            position: absolute;
+            left: 0;
+            top: 409px;
+            display: none;
+        }
+        #img_hover_def {
+            top: 549px;
+        }
+        #novoJogo, #configuracoes, #creditos {
+            position: absolute;
+            left: 0;
+            top: 409px;
+            width: 1100px;
+            height: 50px;
+            cursor: pointer;
+        }
+        #configuracoes {
+            top: 459px;
+        }
+        #creditos {
+            top: 509px;
+        }
+    </style>
+</head>
+<body>
+    <div id="menu">
+        <img id="img_hover" src="images/menu_pausa/hover.png">
+        <div id="novoJogo"></div>
+        <div id="configuracoes"></div>
+        <div id="creditos"></div>
+    </div>
+    <div id="definicoes">
+        <img id="img_hover_def" src="images/menu_pausa/hover.png">
+        <div id="hover"></div>
+        <div id="result_saltar"></div>
+        <div id="result_baixo"></div>
+        <div id="result_frente"></div>
+        <div id="result_tras"></div>
+        <div id="result_shoot"></div>
+        <div id="result_pausa"></div>
+        <div id="saltar"></div>
+        <div id="baixo"></div>
+        <div id="frente"></div>
+        <div id="tras"></div>
+        <div id="shoot"></div>
+        <div id="pausa"></div>
+        <div id="slider_ambiente">
+            <input id="volumeslider_ambiente" type="range" min="0" max="100" value="80" step="1">
+            <!--<button id="muteOn_Off">Mute</button>-->
+        </div>
+        <div id="slider_efeitos">
+            <input id="volumeslider_efeitos" type="range" min="0" max="100" value="50" step="1">
+            <!--<button id="muteOn_Off">Mute</button>-->
+        </div>
+        <div id="blur_menu"></div>
+        <img id="divs_def">
+    </div>
+    <script>
+        var arraySounds = [], button, estadoPremir = false, slider_som_efeitos, slider_som_fundo;
+        var som_oficial = new Audio("sounds/som_oficial.mp3");
+        var laser_gun = new Audio("sounds/laser_gun.mp3");
+        var ze_morte = new Audio("sounds/ze_morte.mp3");
+        var iminigo1_morte = new Audio("sounds/morte_inimigo1.mp3");
+        var ze_walk = new Audio("sounds/walk.mp3");
+        var teclaCima, teclaDireita, teclaEsquerda, teclaBaixo, teclaTiro, teclaPausa;
+
+        som_oficial.loop = true;
+        som_oficial.play();
+        arraySounds[0] = laser_gun;
+        arraySounds[1] = ze_morte;
+        arraySounds[2] = iminigo1_morte;
+        arraySounds[3] = ze_walk;
+
+        var arrow_keys_handler = function(e) {
+            switch(e.keyCode){
+                case 37: case 39: case 38:  case 40: // Arrow keys
+                case 32: e.preventDefault(); break; // Space
+                default: break; // do not block other keys
+            }
+        };
+        window.addEventListener("keydown", arrow_keys_handler, false);
+
+        window.onload = function() {
+            teclaCima = "ArrowUp";
+            teclaDireita = "ArrowRight";
+            teclaEsquerda = "ArrowLeft";
+            teclaBaixo = "ArrowDown";
+            teclaTiro = " ";
+            teclaPausa = "p";
+
+            sessionStorage["result_saltar"] = teclaCima;
+            sessionStorage["result_baixo"] = teclaBaixo;
+            sessionStorage["result_tras"] = teclaEsquerda;
+            sessionStorage["result_frente"] = teclaDireita;
+            sessionStorage["result_shoot"] = teclaTiro;
+            sessionStorage["result_pausa"] = teclaPausa;
+            sessionStorage["volumeEfeitos"] = laser_gun.volume;
+            sessionStorage["volumeFundo"] = som_oficial.volume;
+            sessionStorage["volumeSliderFundo"] = parseInt(document.getElementById("volumeslider_ambiente").value);
+            sessionStorage["volumeSliderEfeitos"] = parseInt(document.getElementById("volumeslider_efeitos").value);
+
+            document.getElementById("menu").style.position = "absolute";
+            document.getElementById("menu").style.left = Math.round((innerWidth - 1100) / 2) + "px";
+            document.getElementById("menu").style.top = Math.round((innerHeight - 600) / 2) + "px";
+
+            document.getElementById("novoJogo").onmouseover = function () {
+                document.getElementById("img_hover").style.top = "409px";
+                document.getElementById("img_hover").style.display = "block";
+            };
+            document.getElementById("novoJogo").onmouseout = function () {
+                document.getElementById("img_hover").style.display = "none";
+            };
+            document.getElementById("configuracoes").onmouseover = function () {
+                document.getElementById("img_hover").style.top = "459px";
+                document.getElementById("img_hover").style.display = "block";
+            };
+            document.getElementById("configuracoes").onmouseout = function () {
+                document.getElementById("img_hover").style.display = "none";
+            };
+            document.getElementById("creditos").onmouseover = function () {
+                document.getElementById("img_hover").style.top = "509px";
+                document.getElementById("img_hover").style.display = "block";
+            };
+            document.getElementById("creditos").onmouseout = function () {
+                document.getElementById("img_hover").style.display = "none";
+            };
+
+            document.getElementById("novoJogo").onclick = function () {
+                som_oficial.pause();
+                window.open("nivel1.html", "_self");
+            };
+            document.getElementById("configuracoes").onclick = function () {
+                document.getElementById("definicoes").style.display = "block";
+                definicoes();
+            };
+            document.getElementById("creditos").onclick = function () {
+                window.open("creditos.html", "_self");
+            };
+        };
+
+        function definicoes() {
+            teclaCima = sessionStorage["result_saltar"];
+            teclaBaixo = sessionStorage["result_baixo"];
+            teclaEsquerda = sessionStorage["result_tras"];
+            teclaDireita = sessionStorage["result_frente"];
+            teclaTiro = sessionStorage["result_shoot"];
+            teclaPausa = sessionStorage["result_pausa"];
+
+            slider_som_fundo = document.getElementById("volumeslider_ambiente");
+            slider_som_efeitos = document.getElementById("volumeslider_efeitos");
+
+            //Mostrar de maneira correta as teclas nos input's
+            if (teclaCima == " ")
+                document.getElementById("result_saltar").innerHTML = "space";
+            else
+                document.getElementById("result_saltar").innerHTML = teclaCima;
+            if (teclaDireita == " ")
+                document.getElementById("result_frente").innerHTML = "space";
+            else
+                document.getElementById("result_frente").innerHTML = teclaDireita;
+            if (teclaEsquerda == " ")
+                document.getElementById("result_tras").innerHTML = "space";
+            else
+                document.getElementById("result_tras").innerHTML = teclaEsquerda;
+            if (teclaTiro == " ")
+                document.getElementById("result_shoot").innerHTML = "space";
+            else
+                document.getElementById("result_shoot").innerHTML = teclaTiro;
+            if (teclaPausa == " ")
+                document.getElementById("result_pausa").innerHTML = "space";
+            else
+                document.getElementById("result_pausa").innerHTML = teclaPausa;
+            if (teclaBaixo == " ")
+                document.getElementById("result_baixo").innerHTML = "space";
+            else
+                document.getElementById("result_baixo").innerHTML = teclaBaixo;
+            document.getElementById("definicoes").style.position = "absolute";
+            document.getElementById("definicoes").style.left = Math.round((innerWidth - 1100)/2) + "px";
+            document.getElementById("definicoes").style.top = Math.round((innerHeight - 600)/2) + "px";
+            document.getElementById("definicoes").style.display = "block";
+            document.getElementById("hover").onmouseover = function() {
+                document.getElementById("img_hover_def").style.display = "block";
+            };
+            document.getElementById("hover").onmouseout = function() {
+                document.getElementById("img_hover_def").style.display = "none";
+            };
+            document.getElementById("hover").onclick = function() {
+                sessionStorage["volumeSliderFundo"] = parseInt(document.getElementById("volumeslider_ambiente").value);
+                sessionStorage["volumeSliderEfeitos"] = parseInt(document.getElementById("volumeslider_efeitos").value);
+                document.getElementById("definicoes").style.display = "none";
+            };
+
+            document.getElementById("saltar").onclick = function() {
+                estadoPremir = true;
+                document.getElementById("blur_menu").style.display = "block";
+                document.getElementById("divs_def").style.display = "block";
+                document.getElementById("divs_def").src = "images/menu_pausa/divs_definir/defin_saltar.png";
+                button = "result_saltar";
+            };
+            document.getElementById("frente").onclick = function() {
+                estadoPremir = true;
+                document.getElementById("blur_menu").style.display = "block";
+                document.getElementById("divs_def").style.display = "block";
+                document.getElementById("divs_def").src = "images/menu_pausa/divs_definir/defin_frente.png";
+                button = "result_frente";
+            };
+            document.getElementById("tras").onclick = function() {
+                estadoPremir = true;
+                document.getElementById("blur_menu").style.display = "block";
+                document.getElementById("divs_def").style.display = "block";
+                document.getElementById("divs_def").src = "images/menu_pausa/divs_definir/defin_tras.png";
+                button = "result_tras";
+            };
+            document.getElementById("shoot").onclick = function() {
+                estadoPremir = true;
+                document.getElementById("blur_menu").style.display = "block";
+                document.getElementById("divs_def").style.display = "block";
+                document.getElementById("divs_def").src = "images/menu_pausa/divs_definir/defin_disparar.png";
+                button = "result_shoot";
+            };
+            document.getElementById("pausa").onclick = function() {
+                estadoPremir = true;
+                document.getElementById("blur_menu").style.display = "block";
+                document.getElementById("divs_def").style.display = "block";
+                document.getElementById("divs_def").src = "images/menu_pausa/divs_definir/defin_pausa.png";
+                button = "result_pausa";
+            };
+            document.getElementById("baixo").onclick = function() {
+                estadoPremir = true;
+                document.getElementById("blur_menu").style.display = "block";
+                document.getElementById("divs_def").style.display = "block";
+                document.getElementById("divs_def").src = "images/menu_pausa/divs_definir/defin_saltar.png";
+                button = "result_baixo";
+            };
+
+            window.onkeydown = function (event) {
+                if (estadoPremir == true)
+                    comandos(event, button);
+            };
+
+            slider_som_efeitos.addEventListener("change", setvolumeEfeitos, false);
+
+            slider_som_fundo.addEventListener("change", setvolumeFundo, false);
+
+            function setvolumeEfeitos() {
+                for (var b = 0; b < arraySounds.length; b++) {
+                    arraySounds[b].volume = slider_som_efeitos.value / 100;
+                    sessionStorage["volumeEfeitos"] = laser_gun.volume;
+                }
+            }
+
+            function setvolumeFundo() {
+                som_oficial.volume = slider_som_fundo.value / 100;
+                sessionStorage["volumeFundo"] = som_oficial.volume;
+            }
+        }
+
+        function comandos(evt, button) {
+            var tecla_menu = evt.key;
+            console.log(tecla_menu);
+            if (tecla_menu == " ")
+                document.getElementById(button).innerHTML = "space";
+            else
+                document.getElementById(button).innerHTML = tecla_menu;
+            sessionStorage[button] = tecla_menu;
+            document.getElementById("blur_menu").style.display = "none";
+            document.getElementById("divs_def").style.display = "none";
+            estadoPremir = false;
+        }
+
+        function processaTecla_pausa() {
+            var zeLeft = parseInt(document.getElementById("ze_pausa").style.left);
+            var zeTop = parseInt(document.getElementById("ze_pausa").style.top);
+
+            if (zePausaMov == 1) {
+                for (var i = 0; i < arrayTeclas_pausa.length; i++) {
+                    switch (arrayTeclas_pausa[i]) {
+                        case teclaDireita:
+                            if (zeLeft + 65 <= 700) {
+                                if (facing_pausa != "right") {
+                                    facing_pausa = "right";
+                                    document.getElementById("ze_pausa").src = "images/menu_pausa/ze_pequeno.png"
+                                }
+                                document.getElementById("ze_pausa").style.left = zeLeft + 5 + "px";
+                            }
+                            break;
+
+                        case teclaEsquerda:
+                            if (zeLeft >= 5) {
+                                if (facing_pausa != "left") {
+                                    facing_pausa = "left";
+                                    document.getElementById("ze_pausa").src = "images/menu_pausa/ze_pequeno_esq.png"
+                                }
+                                document.getElementById("ze_pausa").style.left = zeLeft - 5 + "px";
+                            }
+                            break;
+                        case teclaCima:
+                            if (zeTop >= 5) {
+                                document.getElementById("ze_pausa").style.top = zeTop - 5 + "px";
+                            }
+                            break;
+                        case teclaBaixo:
+                            if (zeTop + 105 <= 400) {
+                                document.getElementById("ze_pausa").style.top = zeTop + 5 + "px";
+                            }
+                            break;
+                    }
+                }
+                detetaColisao_pausa();
+            }
+        }
+    </script>
+</body>
+</html>

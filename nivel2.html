@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prototype</title>
+    <link href="game.css" rel="stylesheet" type="text/css">
+    <script src="lvl2.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="main">
+        <div id="space"></div>
+        <div id="background"></div>
+        <div id="plataformas"></div>
+        <img src="images/ze.png" id="ze">
+        <div id="plat_design"></div>
+        <div id="elementos">
+            <img src="images/checkpoint.png" id="check">
+            <img src="images/inimigo.png" id="inimigo1">
+            <img src="images/inimigo.png" id="inimigo2">
+            <img src="images/inimigo.png" id="inimigo3">
+            <img src="images/inimigo.png" id="inimigo4">
+            <img src="images/tiro.png" id="tiro">
+            <img id="lifes" src="images/lifes/5.png">
+            <div id="blur"></div>
+            <div id="main_pausa">
+                <div id="nave_pausa">
+                    <div id="menu1"></div>
+                    <div id="menu2"></div>
+                    <div id="menu3"></div>
+                    <div id="menu4"></div>
+                    <img src="images/menu_pausa/ze_pequeno.png" id="ze_pausa">
+                </div>
+                <input type="image" id="img_sair" src="images/menu_pausa/legenda_sair.png" />
+                <input type="image" id="img_voltar" src="images/menu_pausa/legenda_voltar.png" />
+                <input type="image" id="img_definicoes" src="images/menu_pausa/legenda_definicoes.png" />
+                <input type="image" id="img_banco" src="images/menu_pausa/legenda_banco_mem.png" />
+                <div id="definicoes">
+                    <img id="img_hover" src="images/menu_pausa/hover.png">
+                    <div id="hover"></div>
+                    <div id="result_saltar"></div>
+                    <div id="result_baixo"></div>
+                    <div id="result_frente"></div>
+                    <div id="result_tras"></div>
+                    <div id="result_shoot"></div>
+                    <div id="result_pausa"></div>
+                    <div id="saltar"></div>
+                    <div id="baixo"></div>
+                    <div id="frente"></div>
+                    <div id="tras"></div>
+                    <div id="shoot"></div>
+                    <div id="pausa"></div>
+                    <div id="slider_ambiente">
+                        <input id="volumeslider_ambiente" type="range" min="0" max="100" value="80" step="1">
+                        <!--<button id="muteOn_Off">Mute</button>-->
+                    </div>
+                    <div id="slider_efeitos">
+                        <input id="volumeslider_efeitos" type="range" min="0" max="100" value="50" step="1">
+                        <!--<button id="muteOn_Off">Mute</button>-->
+                    </div>
+                    <div id="blur_menu"></div>
+                    <img id="divs_def">
+                </div>
+                <div id="banco">
+                    <div id="tina_txt"></div>
+                    <div id="ketchup_txt"></div>
+                    <div id="vodka_txt"></div>
+                    <div id="adolfo_txt"></div>
+                    <div id="membro_txt"></div>
+                    <div id="vegetalia_txt"></div>
+                    <div id="arma_txt"></div>
+                    <div id="alien_txt"></div>
+                    <div id="tina_btn"></div>
+                    <div id="ketchup_btn"></div>
+                    <div id="vodka_btn"></div>
+                    <div id="adolfo_btn"></div>
+                    <div id="membro_btn"></div>
+                    <div id="vegetalia_btn"></div>
+                    <div id="arma_btn"></div>
+                    <div id="alien_btn"></div>
+                    <div id="banco_voltar"></div>
+                </div>
+            </div>
+        </div>
+        <div id="end">
+            <span id="mensagem"></span><br><span id="mensagem2"></span><br><span id="resultado"></span>
+        </div>
+        <div id="div_nome">
+            <input type="text" id="nome" maxlength="10" autocomplete="off" autofocus><button id="btn">OK</button>
+        </div>
+        <div id="tableTOP">
+            <div id="title">TOP 10</div>
+            <div id="headers">
+                <span id="txt_rank">Rank</span><span id="txt_score">Score</span><span id="txt_name">Name</span>
+            </div>
+            <div id="rank"></div>
+            <div id="score"></div>
+            <div id="name"></div>
+        </div>
+        <button type="button" id="repetir">Repetir</button>
+        <button type="button" id="voltar">Voltar</button>
+        <div id="tempo"></div>
+    </div>
+</body>
+</html>

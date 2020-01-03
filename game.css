@@ -1,0 +1,686 @@
+* {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: Titillium Web-Regular;
+    src: url('fonts/titillium_web/TitilliumWeb-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: Titillium Web-Bold;
+    src: url('fonts/titillium_web/TitilliumWeb-Bold.ttf') format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Titillium Web-Light;
+    src: url('fonts/titillium_web/TitilliumWeb-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: Franchise-Bold;
+    src: url('fonts/Franchise-Bold.ttf') format('truetype');
+    font-weight: bold;
+}
+
+/******************************************** DIV'S PRINCIPAIS ********************************************************/
+#main {
+    width: 1100px;
+    height: 600px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#plataformas, #background, #space, #plat_design {
+    width: 11050px;
+    height: 600px;
+    position: absolute;
+    left: 0;
+}
+
+#tempo {
+    background-color: white;
+    width: 1100px;
+    height: 600px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#div_nome {
+    background: url('images/barra_nome.png') no-repeat;
+    width: 500px;
+    height: 100px;
+    position: absolute;
+    left: 300px;
+    top: 250px;
+    text-align: center;
+    display: none;
+    font-family: "Titillium Web-Regular";
+}
+
+#div_nome #nome, #btn {
+    margin-top: 35px;
+    margin-right: 10px;
+}
+
+#nome {
+    position: absolute;
+    top: -5px;
+    left: 160px;
+    width: 180px;
+    height: 33px;
+    background-color: transparent;
+    color: white;
+    font-size: 17pt;
+    outline: none;
+    border: none;
+}
+
+#btn {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: -7px;
+    left: 353px;
+    background-color: transparent;
+    color: white;
+    font-size: 14pt;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+/**********************************************************************************************************************/
+
+/******************************************* CONTROLO DE PONTUAÇÃO ****************************************************/
+#lifes {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+}
+
+/**********************************************************************************************************************/
+
+/******************************************** FIM DE JOGO / PONTUAÇÃO *************************************************/
+#end {
+    font-family: "Titillium Web-Regular";
+    width: 500px;
+    height: 270px;
+    margin: auto;
+    position: relative;
+    top: 150px;
+    left: -245px;
+    background-color: lightslategray;
+    border-radius: 1.2em;
+    border: white solid 5px;
+    text-align: center;
+    vertical-align: middle;
+    display: none;
+}
+
+#mensagem {
+    font-size: 30px;
+    position: relative;
+    top: 15px;
+    color: darkred;
+    font-family: "Titillium Web-Bold";
+}
+
+#mensagem2 {
+    font-size: 22px;
+    position: relative;
+    top: 25px;
+}
+
+#resultado {
+    font-size: 120px;
+    position: relative;
+    top: 14px;
+}
+
+#tableTOP {
+    font-family: "Titillium Web-Regular";
+    width: 400px;
+    height: 500px;
+    background-color: lightgrey;
+    position: absolute;
+    top: 50px;
+    left: 620px;
+    display: none;
+}
+#tableTOP #title {
+    font-family: "Titillium Web-Bold";
+    padding-top: 20px;
+    padding-bottom: 25px;
+    text-align: center;
+    font-size: 30px;
+}
+#tableTOP #txt_rank, #txt_score, #txt_name {
+    font-weight: bold;
+    padding: 0 25px 0 35px;
+    font-size: 30px;
+    position: relative;
+    top: -5px;
+    left: 5px;
+}
+#rank, #score, #name {
+    font-size: 23px;
+    width: 120px;
+    height: 360px;
+    position: absolute;
+    top: 130px;
+}
+#rank {
+    letter-spacing: 0.03em;
+    left: 40px;
+}
+#score {
+    text-align: center;
+    left: 148px;
+}
+#name {
+    text-align: right;
+    left: 255px;
+}
+#repetir, #voltar {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    font-family: "Titillium Web-Regular";
+    color: #ffffff;
+    font-size: 30px;
+    background:  #7f898f;
+    padding: 15px 27px 15px 27px;
+    text-decoration: none;
+    position: absolute;
+    top: 480px;
+    left: 120px;
+    display: none;
+}
+#voltar {
+    left: 350px;
+}
+
+#repetir:hover, #voltar:hover {
+    background: #a6b2ba;
+    text-decoration: none;
+}
+/**********************************************************************************************************************/
+
+/**************************************************** ELEMENTOS *******************************************************/
+
+#ze {
+    position: absolute;
+    top: 400px;
+    left: 50px;
+}
+
+#inimigo1, #inimigo2, #inimigo3, #inimigo4 {
+    position: absolute;
+    top: 400px;
+    left: 800px;
+}
+
+#tiro {
+    position: absolute;
+    top: 460px;
+    left: 100px;
+}
+
+#check {
+    position: absolute;
+    top: 400px;
+    left: 800px;
+    display: none;
+}
+
+.tile {
+    width: 50px;
+    height: 50px;
+}
+
+.white {
+    background-color: transparent;
+}
+
+.red {
+    background-color: red;
+}
+
+#blur, #blur_menu {
+    background-color: black;
+    opacity: 0.4;
+    width: 1100px;
+    height: 600px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+}
+/**********************************************************************************************************************/
+
+/*************************************************** TIME / DATE ******************************************************/
+#time {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #ff9900;
+    width: 190px;
+    height: 125px;
+    text-align: center;
+    font-family: Franchise-Bold;
+    text-transform: uppercase;
+    visibility: hidden;
+}
+#div_hours {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 190px;
+    height: 70px;
+}
+#div_date {
+    width: 190px;
+    height: 20px;
+    position: absolute;
+    top: 94px;
+    left: 0;
+}
+#div_hours #horas {
+    position: absolute;
+    top: 1px;
+    left: 45px;
+    font-size: 50pt;
+}
+#div_date #data {
+    font-size: 15pt;
+}
+/**********************************************************************************************************************/
+
+/*************************************************** MENU PAUSA *******************************************************/
+#main_pausa {
+    width: 1100px;
+    height: 600px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    background-image: url("images/menu_pausa/mapa.png");
+}
+
+#nave_pausa {
+    width: 700px;
+    height: 400px;
+    position: absolute;
+    left: 200px;
+    top: 100px;
+}
+
+#ze_pausa {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#menu1 {
+    width: 200px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    left: 250px;
+    text-align: center;
+}
+
+#menu2 {
+    width: 50px;
+    height: 200px;
+    position: absolute;
+    top: 100px;
+    left: 650px;
+    text-align: center;
+}
+
+#menu3 {
+    width: 200px;
+    height: 50px;
+    position: absolute;
+    top: 350px;
+    left: 250px;
+    text-align: center;
+}
+
+#menu4 {
+    width: 50px;
+    height: 200px;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    text-align: center;
+}
+
+#img_sair {
+    position: absolute;
+    top: 75px;
+    left: 509px;
+    visibility: hidden;
+    outline:none;
+}
+
+#img_voltar {
+    position: absolute;
+    top: 480px;
+    left: 509px;
+    visibility: hidden;
+    outline:none;
+}
+
+#img_banco {
+    position: absolute;
+    top: 210px;
+    left: 145px;
+    visibility: hidden;
+    outline:none;
+}
+
+#img_definicoes {
+    position: absolute;
+    top: 210px;
+    left: 820px;
+    visibility: hidden;
+    outline:none;
+}
+
+/**********************************************************************************************************************/
+
+/************************************************** VOLUME CONTROLS ***************************************************/
+#volumeslider_ambiente, #volumeslider_efeitos {
+    -webkit-appearance: none;
+    width: 100%;
+}
+#volumeslider_ambiente:focus, #volumeslider_efeitos:focus {
+    outline: none;
+}
+#volumeslider_ambiente::-webkit-slider-runnable-track, #volumeslider_efeitos::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 0 #000000;
+    background: #B6B6B6;
+    /*border-radius: 25px;*/
+    border: 1px solid #8A8A8A;
+}
+#volumeslider_ambiente::-webkit-slider-thumb, #volumeslider_efeitos::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #828282;
+    border: 1px solid #8A8A8A;
+    height: 24px;
+    width: 35px;
+    border-radius: 6px;
+    background: #DADADA;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -5px;
+}
+#volumeslider_ambiente:focus::-webkit-slider-runnable-track, #volumeslider_efeitos:focus::-webkit-slider-runnable-track {
+    background: #B6B6B6;
+}
+#volumeslider_ambiente::-moz-range-track, #volumeslider_efeitos::-moz-range-track {
+    width: 100%;
+    height: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 0 #000000;
+    background: #B6B6B6;
+    /*border-radius: 25px;*/
+    border: 1px solid #8A8A8A;
+}
+#volumeslider_ambiente::-moz-range-thumb, #volumeslider_efeitos::-moz-range-thumb {
+    box-shadow: 1px 1px 1px #828282;
+    border: 1px solid #8A8A8A;
+    height: 24px;
+    width: 35px;
+    border-radius: 6px;
+    background: #DADADA;
+    cursor: pointer;
+}
+#volumeslider_ambiente::-ms-track, #volumeslider_efeitos::-ms-track {
+    width: 100%;
+    height: 16px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+#volumeslider_ambiente::-ms-fill-lower, #volumeslider_efeitos::-ms-fill-lower {
+    background: #B6B6B6;
+    border: 1px solid #8A8A8A;
+    border-radius: 50px;
+    box-shadow: 0 0 0 #000000;
+}
+#volumeslider_ambiente::-ms-fill-upper, #volumeslider_efeitos::-ms-fill-upper {
+    background: #B6B6B6;
+    border: 1px solid #8A8A8A;
+    border-radius: 50px;
+    box-shadow: 0 0 0 #000000;
+}
+#volumeslider_ambiente::-ms-thumb, #volumeslider_efeitos::-ms-thumb {
+    box-shadow: 1px 1px 1px #828282;
+    border: 1px solid #8A8A8A;
+    height: 24px;
+    width: 35px;
+    border-radius: 6px;
+    background: #DADADA;
+    cursor: pointer;
+}
+#volumeslider_ambiente:focus::-ms-fill-lower, #volumeslider_efeitos::-ms-fill-lower {
+    background: #B6B6B6;
+}
+#volumeslider_ambiente:focus::-ms-fill-upper, #volumeslider_efeitos::-ms-fill-upper {
+    background: #B6B6B6;
+}
+#slider_ambiente {
+    width: 350px;
+    position: absolute;
+    top: 245px;
+    left: 630px;
+}
+#slider_efeitos {
+    width: 350px;
+    position: absolute;
+    top: 360px;
+    left: 630px;
+}
+/**********************************************************************************************************************/
+
+/**************************************************** DEFINIÇÕES ******************************************************/
+
+#definicoes {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1100px;
+    height: 600px;
+    background-image: url('images/menu_pausa/configuracoes.png');
+    display: none;
+}
+
+#hover {
+    position: absolute;
+    left: 0;
+    top: 549px;
+    width: 1100px;
+    height: 600px;
+    cursor: pointer;
+}
+
+#img_hover {
+    position: absolute;
+    left: 0;
+    top: 549px;
+    display: none;
+}
+
+#saltar, #frente, #tras, #shoot, #pausa, #baixo {
+    position: absolute;
+    left: 302px;
+    width: 107px;
+    height: 28px;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+#result_frente, #result_pausa, #result_saltar, #result_shoot, #result_tras, #result_baixo {
+    font-family: "Titillium Web-Light";
+    font-size: 11pt;
+    position: absolute;
+    left: 302px;
+    width: 107px;
+    height: 28px;
+    text-align: center;
+    font-weight: bold;
+}
+#result_saltar, #saltar {
+    top: 195px;
+}
+#result_baixo, #baixo {
+    top: 254px;
+}
+#result_frente, #frente {
+    top: 313px;
+}
+#result_tras, #tras {
+    top: 371px;
+}
+#result_shoot, #shoot {
+    top: 429px;
+}
+#result_pausa, #pausa {
+    top: 492px;
+}
+#divs_def {
+    position: absolute;
+    top: 179px;
+    left: 304px;
+    display: none;
+}
+/**********************************************************************************************************************/
+
+#banco {
+    width: 1100px;
+    height: 600px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+#banco_voltar {
+    background-image: url('images/banco_mem/sair_btn.png');
+    position: absolute;
+    top: 558px;
+    left: 930px;
+    width: 110px;
+    height: 31px;
+    cursor: pointer;
+}
+#banco_voltar:hover {
+    background-image: url("images/banco_mem/sair_btn_hover.png");
+}
+#tina_btn, #ketchup_btn, #vodka_btn, #adolfo_btn, #membro_btn, #vegetalia_btn, #arma_btn, #alien_btn {
+    position: absolute;
+    top: 73px;
+    left: 28px;
+    width: 129px;
+    height: 54px;
+    cursor: pointer;
+}
+#tina_btn {
+    background-image: url('images/banco_mem/01_tina_fava/tina_btn.png');
+}
+#ketchup_btn {
+    top: 130px;
+    background-image: url('images/banco_mem/02_ketchup/ketchup_btn.png');
+}
+#vodka_btn {
+    top: 187px;
+    background-image: url('images/banco_mem/03_vodka/vodka_btn.png');
+}
+#adolfo_btn {
+    top: 244px;
+    background-image: url('images/banco_mem/04_adolfo/adolfo_btn.png');
+}
+#membro_btn {
+    top: 301px;
+    background-image: url('images/banco_mem/05_membro/membro_btn.png');
+}
+#vegetalia_btn {
+    top: 358px;
+    background-image: url('images/banco_mem/06_vegetalia/vegetalia_btn.png');
+}
+#arma_btn {
+    top: 415px;
+    background-image: url('images/banco_mem/07_arma/arma_btn.png');
+}
+#alien_btn {
+    top: 472px;
+    background-image: url('images/banco_mem/08_alien/alien_btn.png');
+}
+#tina_btn:hover {
+    background-image: url('images/banco_mem/01_tina_fava/tina_btn_hover.png');
+}
+#ketchup_btn:hover {
+    background-image: url('images/banco_mem/02_ketchup/ketchup_btn_hover.png');
+}
+#vodka_btn:hover {
+    background-image: url('images/banco_mem/03_vodka/vodka_btn_hover.png');
+}
+#adolfo_btn:hover {
+    background-image: url('images/banco_mem/04_adolfo/adolfo_btn_hover.png');
+}
+#membro_btn:hover {
+    background-image: url('images/banco_mem/05_membro/membro_btn_hover.png');
+}
+#vegetalia_btn:hover {
+    background-image: url('images/banco_mem/06_vegetalia/vegetalia_btn_hover.png');
+}
+#arma_btn:hover {
+    background-image: url('images/banco_mem/07_arma/arma_btn_hover.png');
+}
+#alien_btn:hover {
+    background-image: url('images/banco_mem/08_alien/alien_btn_hover.png');
+}
+#tina_txt, #ketchup_txt, #vodka_txt, #adolfo_txt, #membro_txt, #vegetalia_txt, #arma_txt, #alien_txt {
+    width: 1100px;
+    height: 600px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+#tina_txt {
+    background-image: url('images/banco_mem/01_tina_fava/tina_fava_fundo.png');
+    display: block;
+}
+#ketchup_txt {
+    background-image: url('images/banco_mem/02_ketchup/ketchup_fundo.png');
+}
+#vodka_txt {
+    background-image: url('images/banco_mem/03_vodka/vodka_fundo.png');
+}
+#membro_txt {
+    background-image: url('images/banco_mem/05_membro/membro_fundo.png');
+}
+#vegetalia_txt {
+    background-image: url('images/banco_mem/06_vegetalia/vegetalia_fundo.png');
+}
+#arma_txt {
+    background-image: url('images/banco_mem/07_arma/arma_fundo.png');
+}
+#alien_txt {
+    background-image: url('images/banco_mem/08_alien/alien_fundo.png');
+}
+#adolfo_txt {
+    background-image: url('images/banco_mem/04_adolfo/adolfo_fundo.png');
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #menu, #modelo {
+            width: 1100px;
+            height: 600px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #menu {
+            background-image: url('images/escolha_modelo_fundo.png');
+        }
+        #modelo {
+            background-image: url('images/escolha_modelo.png');
+        }
+        #teclado, #rato {
+            width: 300px;
+            height: 211px;
+            position: absolute;
+            top: 195px;
+            left: 158px;
+            cursor: pointer;
+        }
+        #rato {
+            left: 632px;
+        }
+    </style>
+</head>
+<body>
+    <div id="menu">
+        <div id="modelo"></div>
+        <div id="teclado"></div>
+        <div id="rato"></div>
+    </div>
+
+    <script>
+        var arrow_keys_handler = function(e) {
+            switch(e.keyCode){
+                case 37: case 39: case 38:  case 40: // Arrow keys
+                case 32: e.preventDefault(); break; // Space
+                default: break; // do not block other keys
+            }
+        };
+        window.addEventListener("keydown", arrow_keys_handler, false);
+
+        window.onload = function() {
+            document.getElementById("menu").style.position = "absolute";
+            document.getElementById("menu").style.left = Math.round((innerWidth - 1100) / 2) + "px";
+            document.getElementById("menu").style.top = Math.round((innerHeight - 600) / 2) + "px";
+
+            document.getElementById("teclado").onclick = function() {
+                sessionStorage["modelo"] = "teclado";
+                window.open("menu_principal.html", "_self");
+            };
+            document.getElementById("rato").onclick = function() {
+                sessionStorage["modelo"] = "rato";
+                window.open("menu_principal.html", "_self");
+            };
+        }
+    </script>
+</body>
+</html>

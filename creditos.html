@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #menu {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1100px;
+            height: 600px;
+        }
+        #creditos{
+            animation-name: mexerCreds;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-out;
+            animation-duration: 60s;
+        }
+
+
+        @keyframes mexerCreds {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-6700px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="menu">
+        <img id="creditos" src="images/creditos.png">
+    </div>
+
+    <script>
+        var som_oficial = new Audio("sounds/som_oficial.mp3");
+        som_oficial.play();
+        document.getElementById("menu").style.position = "absolute";
+        document.getElementById("menu").style.left = Math.round((innerWidth - 1100)/2) + "px";
+        document.getElementById("menu").style.top = Math.round((innerHeight - 600)/2) + 25 + "px";
+        var temp = setTimeout(function () {
+            window.open("menu_principal.html", "_self");
+        }, 65000);
+    </script>
+</body>
+</html>
